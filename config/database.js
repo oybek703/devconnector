@@ -4,7 +4,13 @@ const MONGO_URI = config.get('MONGO_URI');
 
 const connectToDatabase = async () => {
     try {
-        await mongoose.connect(MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true});
+        await mongoose.connect(MONGO_URI,
+            {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+                useCreateIndex: true
+            }
+            );
     } catch (e) {
         console.error(e.message);
         process.exit(1);

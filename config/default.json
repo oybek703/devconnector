@@ -1,3 +1,4 @@
 {
-  "MONGO_URI": "mongodb://localhost:27017/devconnector"
+  "MONGO_URI": "mongodb://localhost:27017/devconnector",
+  "JWT_SECRET": "MY_JWT_SECRET_KEY"
 }
