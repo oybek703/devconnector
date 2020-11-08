@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 const router = Router();
 
+//register nw user
 router.post('/', [
   check('name').not().isEmpty().withMessage('Name is required.'),
   check('email').isEmail().withMessage('Please enter valid email address.'),

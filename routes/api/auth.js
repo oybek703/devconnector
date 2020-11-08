@@ -7,6 +7,7 @@ const User = require('../../models/user');
 const auth = require('../../middleware/auth');
 const router = Router();
 
+//get user
 router.get('/', auth, async (req, res) => {
     try {
         const user = await User.findById(req.user).select('-password');
@@ -17,6 +18,7 @@ router.get('/', auth, async (req, res) => {
     }
 });
 
+//login user
 router.post('/', [
     check('email').isEmail().withMessage('Please add valid email address.'),
     check('password').exists().withMessage('Password is required.')
