@@ -8,7 +8,18 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const authLinks = (
         <ul>
-            <li><a href="#!" onClick={() => dispatch(logout())}>Logout</a></li>
+            <li><Link to="/dashboard">
+                <span>
+                    <i className='fas fa-user'></i> {' '}
+                    Dashboard
+                </span>
+            </Link></li>
+            <li><a href="#!" onClick={() => dispatch(logout())}>
+                <span className='hide-sm'>
+                <i className='fas fa-sign-out-alt'></i> {' '}
+                    Logout
+                </span></a>
+            </li>
         </ul>
     ) ;
     const guestLinks = (
