@@ -1,17 +1,30 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {logout} from "../redux/actions/auth";
 
 const Navbar = () => {
+    const {isAuthenticated, loading} = useSelector(state => state.auth);
+    const dispatch = useDispatch();
+    const authLinks = (
+        <ul>
+            <li><a href="#!" onClick={() => dispatch(logout())}>Logout</a></li>
+        </ul>
+    ) ;
+    const guestLinks = (
+        <ul>
+            <li><a href="#!">Developers</a></li>
+            <li><Link to="/register">Register</Link></li>
+            <li><Link to="/login">Login</Link></li>
+        </ul>
+
+    );
     return (
         <nav className="navbar bg-dark">
             <h1>
                 <Link to="/" ><i className="fas fa-code"></i> DevConnector</Link>
             </h1>
-            <ul>
-                <li><a href="profiles.html">Developers</a></li>
-                <li><Link to="/register">Register</Link></li>
-                <li><Link to="/login">Login</Link></li>
-            </ul>
+            {!loading && <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>}
         </nav>
     );
 };

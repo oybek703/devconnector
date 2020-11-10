@@ -11,7 +11,7 @@ const router = Router();
 router.get('/', auth, async (req, res) => {
     try {
         const user = await User.findById(req.user).select('-password');
-        res.json(user);
+        res.status(200).json(user);
     } catch (e) {
         console.log(e);
         res.status(500).send('Server error.');
@@ -22,8 +22,7 @@ router.get('/', auth, async (req, res) => {
 router.post('/', [
     check('email').isEmail().withMessage('Please add valid email address.'),
     check('password').exists().withMessage('Password is required.')
-],
-    async (req, res) => {
+], async (req, res) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()) {
         return res.status(400).json(errors);
@@ -38,7 +37,7 @@ router.post('/', [
         if(!isMatch) {
             return res.status(400).json({errors: [{msg: 'Invalid credentials'}]});
         }
-        const token = await jwt.sign({user: user.id}, config.get('JWT_SECRET'), {expiresIn: 360000});
+        const token = await jwt.sign({user: user.id}, config.get('JWT_SECRET'), {expiresIn: 3600});
         res.status(200).json({token});
     } catch (e) {
         console.log(e);

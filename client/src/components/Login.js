@@ -1,13 +1,20 @@
 import React, {Fragment, useState} from 'react';
-import {Link} from "react-router-dom";
+import  {Link, Redirect} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {login} from "../redux/actions/auth";
 
 const Login = () => {
     const [formData, setFormData] = useState({password: '', email: ''});
+    const {isAuthenticated} = useSelector(state => state.auth);
+    const dispatch = useDispatch();
     const {password, email} = formData;
     const handleChange = (e) => setFormData({...formData, [e.target.name]: e.target.value});
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
+        dispatch(login(email, password));
+    }
+    if(isAuthenticated) {
+        return <Redirect to='/dashboard'/>
     }
     return (
         <Fragment>
