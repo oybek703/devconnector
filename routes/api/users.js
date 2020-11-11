@@ -25,7 +25,7 @@ router.post('/', [
         }
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
-        const avatar = gravatar.url(email, {s: '200', r: 'g', d: 'mp'});
+        const avatar = gravatar.url(email, {s: '100', r: 'g', d: 'mp'});
         user = await User.create({name, email, password: hashedPassword, avatar});
         const token = await jwt.sign({user: user.id}, config.get('JWT_SECRET'), {expiresIn: 3600 });
         res.status(201).json({token});

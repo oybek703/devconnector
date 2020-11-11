@@ -1,5 +1,13 @@
 import axios from 'axios';
-import {ACCOUNT_DELETED, CLEAR_PROFILE, GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE} from "./types";
+import {
+    ACCOUNT_DELETED,
+    CLEAR_PROFILE,
+    GET_PROFILE,
+    GET_PROFILES,
+    GET_REPOS,
+    PROFILE_ERROR,
+    UPDATE_PROFILE
+} from "./types";
 import {setAlert} from "./alert";
 
 export const getCurrentProfile = () => async (dispatch) => {
@@ -7,7 +15,7 @@ export const getCurrentProfile = () => async (dispatch) => {
         const res = await axios.get('/api/profile/me');
         dispatch({type: GET_PROFILE, payload: res.data});
     } catch (e) {
-        dispatch({type: PROFILE_ERROR, payload: e.response.data.errors});
+        dispatch({type: PROFILE_ERROR, payload: e});
     }
 }
 
@@ -20,7 +28,7 @@ export const createProfile = (formData, history, edit = false) => async (dispatc
     } catch (e) {
         const errors = e.response.data.errors;
         errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
-        dispatch({type: PROFILE_ERROR, payload: e.response.data.errors});
+        dispatch({type: PROFILE_ERROR, payload: e});
     }
 }
 
@@ -33,7 +41,7 @@ export const addExperience = (formData, history) => async (dispatch) => {
     } catch (e) {
         const errors = e.response.data.errors;
         if(errors) errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
-        dispatch({type: PROFILE_ERROR, payload: e.response.data.errors});
+        dispatch({type: PROFILE_ERROR, payload: e});
     }
 }
 
@@ -46,7 +54,7 @@ export const addEducation = (formData, history) => async (dispatch) => {
     } catch (e) {
         const errors = e.response.data.errors;
         if(errors) errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
-        dispatch({type: PROFILE_ERROR, payload: e.response.data.errors});
+        dispatch({type: PROFILE_ERROR, payload: e});
     }
 }
 
@@ -56,7 +64,7 @@ export const deleteExperience = (id) => async (dispatch) => {
         dispatch({type: UPDATE_PROFILE, payload: res.data});
         dispatch(setAlert('Experience deleted.'))
     } catch (e) {
-        dispatch({type: PROFILE_ERROR, payload: e.response.data});
+        dispatch({type: PROFILE_ERROR, payload: e});
     }
 }
 
@@ -66,7 +74,7 @@ export const deleteEducation = (id) => async (dispatch) => {
         dispatch({type: UPDATE_PROFILE, payload: res.data});
         dispatch(setAlert('Education deleted.'));
     } catch (e) {
-        dispatch({type: PROFILE_ERROR, payload: e.response.data});
+        dispatch({type: PROFILE_ERROR, payload: e});
     }
 }
 
@@ -78,7 +86,35 @@ export const deleteAccount = () => async (dispatch) => {
             dispatch({type: CLEAR_PROFILE});
             dispatch(setAlert('Account is deleted.'));
         } catch (e) {
-            dispatch({type: PROFILE_ERROR, payload: e.response.data});
+            dispatch({type: PROFILE_ERROR, payload: e});
         }
+    }
+}
+
+export const getAllProfiles = () => async (dispatch) => {
+    try {
+        dispatch({type: CLEAR_PROFILE});
+        const res = await axios.get('/api/profile');
+        dispatch({type: GET_PROFILES, payload: res.data});
+    } catch (e) {
+        dispatch({type: PROFILE_ERROR, payload: e});
+    }
+}
+
+export const getRepos = (username) => async (dispatch) => {
+    try {
+        const res = await axios.get(`/api/profile/github/${username}`);
+        dispatch({type: GET_REPOS, payload: res.data});
+    } catch (e) {
+        dispatch({type: PROFILE_ERROR, payload: e});
+    }
+}
+
+export const getUserById = (userId) => async (dispatch) => {
+    try {
+        const res = await axios.get(`/api/profile/user/${userId}`);
+        dispatch({type: GET_PROFILE, payload: res.data});
+    } catch (e) {
+        dispatch({type: PROFILE_ERROR, payload: e});
     }
 }
