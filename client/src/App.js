@@ -11,9 +11,11 @@ import Alert from "./components/Alert";
 import {loadUser} from "./redux/actions/auth";
 import {setAuthToken} from "./utils";
 import PrivateRoute from "./components/PrivateRoute";
-import Dashboard from "./components/Dashboard";
-import CreateProfile from "./components/CreateProfile";
-import EditProfile from "./components/EditProfile";
+import Dashboard from "./components/Dashboard/Dashboard";
+import CreateProfile from "./components/Dashboard/CreateProfile";
+import EditProfile from "./components/Dashboard/EditProfile";
+import AddExperience from "./components/Dashboard/AddExperience";
+import AddEducation from "./components/Dashboard/addEducation";
 
 if(localStorage.token) setAuthToken(localStorage.token);
 
@@ -35,6 +37,8 @@ const App = () => {
                             <PrivateRoute path='/dashboard' exact component={Dashboard} />
                             <PrivateRoute path='/create-profile' exact component={CreateProfile} />
                             <PrivateRoute path='/edit-profile' exact component={EditProfile} />
+                            <PrivateRoute path='/add-experience' exact component={AddExperience} />
+                            <PrivateRoute path='/add-education' exact component={AddEducation} />
                         </Switch>
                     </section>
                 </Router>

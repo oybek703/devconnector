@@ -1,6 +1,6 @@
 import React, {Fragment, useState} from 'react';
 import {useDispatch} from "react-redux";
-import {createProfile} from "../redux/actions/profile";
+import {createProfile} from "../../redux/actions/profile";
 import {Link, withRouter} from "react-router-dom";
 
 const CreateProfile = ({history}) => {
@@ -91,27 +91,27 @@ const CreateProfile = ({history}) => {
                 {
                     socials && <Fragment>
                         <div className="form-group social-input">
-                            <i className="fab fa-twitter fa-2x"></i>
+                            <i className="fab fa-twitter fa-2x text-primary"></i>
                             <input type="text" placeholder="Twitter URL" name="twitter" value={twitter} onChange={handleChange}/>
                         </div>
 
                         <div className="form-group social-input">
-                            <i className="fab fa-facebook fa-2x"></i>
+                            <i className="fab fa-facebook fa-2x text-primary"></i>
                             <input type="text" placeholder="Facebook URL" name="facebook" value={facebook} onChange={handleChange}/>
                         </div>
 
                         <div className="form-group social-input">
-                            <i className="fab fa-youtube fa-2x"></i>
+                            <i className="fab fa-youtube fa-2x text-danger"></i>
                             <input type="text" placeholder="YouTube URL" name="youtube" value={youtube} onChange={handleChange}/>
                         </div>
 
                         <div className="form-group social-input">
-                            <i className="fab fa-linkedin fa-2x"></i>
+                            <i className="fab fa-linkedin fa-2x text-primary"></i>
                             <input type="text" placeholder="Linkedin URL" name="linkedin" value={linkedin} onChange={handleChange}/>
                         </div>
 
                         <div className="form-group social-input">
-                            <i className="fab fa-instagram fa-2x"></i>
+                            <i className="fab fa-instagram fa-2x text-danger"></i>
                             <input type="text" placeholder="Instagram URL" name="instagram" value={instagram} onChange={handleChange}/>
                         </div>
                     </Fragment>

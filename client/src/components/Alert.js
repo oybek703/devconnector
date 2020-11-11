@@ -5,7 +5,7 @@ const Alert = () => {
     const alert = useSelector(state => state.alert);
     if(!alert.length) return null;
     return (
-        alert.map(alert => <div key={alert.id} className={`alert alert-${alert.alertType}`}>{alert.msg}</div>)
+        alert.map(alert => <div key={alert.id} className={`alert alert-${alert.alertType || 'light'}`}>{alert.msg}</div>)
     )
 };
 

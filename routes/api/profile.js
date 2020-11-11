@@ -5,6 +5,7 @@ const axios = require('axios');
 const auth = require('../../middleware/auth');
 const Profile = require('../../models/profile');
 const User = require('../../models/user');
+const Post = require('../../models/post');
 const router = Router();
 
 //get user profile
@@ -101,6 +102,7 @@ router.delete('/', auth, async (req, res) => {
     try {
         await Profile.findOneAndDelete({user: req.user});
         await User.findByIdAndDelete(req.user);
+        await Post.deleteMany({user: req.user});
         res.status(200).send({msg: 'User is deleted.'});
     } catch (e) {
         console.log(e);

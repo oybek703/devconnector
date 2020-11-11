@@ -1,4 +1,5 @@
 import {
+    ACCOUNT_DELETED,
     AUTH_ERROR,
     LOGIN_ERROR,
     LOGIN_SUCCESS,
@@ -28,6 +29,7 @@ const auth = (state = initialState, action) => {
         case AUTH_ERROR:
         case LOGIN_ERROR:
         case LOGOUT:
+        case ACCOUNT_DELETED:
             localStorage.removeItem('token');
             return {...state, loading: false, token: null, isAuthenticated: false, user: null}
         default:
