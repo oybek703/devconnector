@@ -1,8 +1,8 @@
 import React, {Fragment, useState} from 'react';
 import {Link, Redirect} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {setAlert} from "../redux/actions/alert";
-import {register} from "../redux/actions/auth";
+import {setAlert} from "../../redux/actions/alert";
+import {register} from "../../redux/actions/auth";
 
 const Register = () => {
     const [formData,setFormData] = useState({name: '', email: '', password: '', password2: ''});

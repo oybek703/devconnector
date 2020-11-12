@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {logout} from "../redux/actions/auth";
+import {logout} from "../../redux/actions/auth";
 
 const Navbar = () => {
     const {isAuthenticated, loading} = useSelector(state => state.auth);
@@ -11,6 +11,11 @@ const Navbar = () => {
             <li>
                 <Link to='/profiles'>
                     Developers
+                </Link>
+            </li>
+            <li>
+                <Link to='/posts'>
+                    Posts
                 </Link>
             </li>
             <li><Link to="/dashboard">

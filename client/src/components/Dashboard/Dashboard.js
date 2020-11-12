@@ -1,6 +1,6 @@
 import React, {Fragment, useEffect} from 'react';
 import {deleteAccount, getCurrentProfile} from "../../redux/actions/profile";
-import Spinner from "../Spinner";
+import Spinner from "../Layout/Spinner";
 import {useSelector, useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
 import DashboardActions from "./DashboardActions";

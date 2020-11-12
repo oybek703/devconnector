@@ -1,25 +1,24 @@
 import React, {Fragment, useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {getRepos} from "../../redux/actions/profile";
-import Spinner from "../Spinner";
+import Spinner from "../Layout/Spinner";
 
 const ProfileGithub = ({username}) => {
     const dispatch = useDispatch();
-    const {repos, loading} = useSelector(state => state.profile);
+    const {repos} = useSelector(state => state.profile);
     useEffect(() => {
         dispatch(getRepos(username));
     }, []);
-    console.log(repos)
     return (
         <div className="profile-github">
             <h2 className="text-primary my-1">
                 <i className="fab fa-github"></i> Github Repos
             </h2>
             {
-                (!repos.length) ? <p>No github repos</p> : (<Fragment>
+                !repos.length ? <p>No github repos</p> : (<Fragment>
                     {
                         repos.map(repo => (
-                            <div className="repo bg-white p-1 my-1">
+                            <div className="repo bg-white p-1 my-1" key={repo.id}>
                                 <div>
                                     <h4><a href={repo.html_url} target="_blank"
                                            rel="noopener noreferrer">{repo.name}</a></h4>
@@ -29,7 +28,7 @@ const ProfileGithub = ({username}) => {
                                     <ul>
                                         <li className="badge badge-primary">Stars: {repo.stargazers_count}</li>
                                         <li className="badge badge-dark">Watchers: {repo.watchers_count}</li>
-                                        <li className="badge badge-light">Forks: {repo.forks_count}</li>
+                                        <li className="badge badge-light" >Forks: {repo.forks_count}</li>
                                     </ul>
                                 </div>
                             </div>

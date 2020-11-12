@@ -2,7 +2,7 @@ import React, {Fragment, useEffect} from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {getUserById} from "../../redux/actions/profile";
-import Spinner from "../Spinner";
+import Spinner from "../Layout/Spinner";
 import ProfileTop from "./ProfileTop";
 import ProfileAbout from "./ProfileAbout";
 import ProfileExperience from "./ProfileExperience";

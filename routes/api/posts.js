@@ -122,7 +122,7 @@ router.put('/unlike/:postId', auth, async (req, res) => {
 });
 
 //add comment
-router.post('/comments', [
+router.post('/comments/:postId', [
         auth,
         [
             check('text', 'Text is required.').notEmpty()
@@ -134,7 +134,8 @@ router.post('/comments', [
         }
         try {
             const {text} = req.body;
-            const post = await Post.findOne({user: req.user});
+            const {postId} = req.params;
+            const post = await Post.findById(postId);
             const user = await User.findById(req.user);
             post.comments.unshift({user: req.user, text, name: user.name, avatar: user.avatar});
             await post.save();

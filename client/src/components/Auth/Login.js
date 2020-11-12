@@ -1,7 +1,7 @@
 import React, {Fragment, useState} from 'react';
 import  {Link, Redirect} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {login} from "../redux/actions/auth";
+import {login} from "../../redux/actions/auth";
 
 const Login = () => {
     const [formData, setFormData] = useState({password: '', email: ''});
