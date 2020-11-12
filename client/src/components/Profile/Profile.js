@@ -4,6 +4,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {getUserById} from "../../redux/actions/profile";
 import Spinner from "../Spinner";
 import ProfileTop from "./ProfileTop";
+import ProfileAbout from "./ProfileAbout";
+import ProfileExperience from "./ProfileExperience";
+import ProfileEducation from "./ProfileEducation";
+import ProfileGithub from "./ProfileGithub";
 const Profile = ({match}) => {
     const {profile, loading: profileLoading} = useSelector(state => state.profile);
     const {user,loading: authLoading, isAuthenticated} = useSelector(state => state.auth);
@@ -22,6 +26,10 @@ const Profile = ({match}) => {
                             {isAuthenticated && profile.user._id === user._id && <Link to='/edit-profile' className='btn btn-dark'>Edit Profile</Link>}
                             <div className="profile-grid my-1">
                                 <ProfileTop profile={profile}/>
+                                <ProfileAbout profile={profile}/>
+                                <ProfileExperience experiences={profile.experience}/>
+                                <ProfileEducation educations={profile.education}/>
+                                <ProfileGithub username={profile.githubusername}/>
                             </div>
                         </Fragment>
                     )
