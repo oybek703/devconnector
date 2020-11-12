@@ -15,7 +15,8 @@ const Dashboard = () => {
     }, []);
     return (
         <Fragment>
-            {loading ? <Spinner/> : (
+            {
+                loading || !profile ? <Spinner/> : (
                 <Fragment>
                     <h1 className='text-primary large'>Dashboard</h1>
                     <p className='lead'><i className='fas fa-user'></i> {' '}Welcome {user && user.name}</p>
