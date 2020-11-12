@@ -15,6 +15,6 @@ if(process.env.NODE_ENV === 'production') {
        res.sendFile(path.resolve(__dirname, 'clint', 'build', 'index.html'));
     });
 }
-
+const PORT = process.env.PORT || 5000;
 connectToDatabase().then(() => console.log('Connected to MongoDB...'));
-app.listen(process.env.NODE_ENV || 5000, () => {console.log(`Server is running on port ${process.env.NODE_ENV || 5000}...`)});
+app.listen(PORT, () => {console.log(`Server is running on port ${PORT}...`)});
