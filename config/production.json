@@ -1,6 +1,0 @@
-{
-  "MONGO_URI": "mongodb+srv://oybek:3008322a@cluster0.yv8ge.mongodb.net/devconnector?retryWrites=true&w=majority",
-  "JWT_SECRET": "MY_JWT_SECRET_KEY",
-  "GITHUB_CLIENT_ID": "ca8e00e7451715312f23",
-  "GITHUB_CLIENT_SECRET": "93b54215996b2bdbe7eac02a05c1e9700b4592f0"
-}
